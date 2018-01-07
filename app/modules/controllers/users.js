@@ -13,8 +13,8 @@ module.exports = app => {
             Validate.validateBody(req.body, 'name', 'email', 'phone', 'password')
                 .then(Business.update(res)(req.params))
                 .catch(err => res.status(500).json(err)),
-        listAll: (req, res) => Persistence.findAll(res)(req.params, req.body),
-        listOne: (req, res) => Persistence.findOne(res)(req.params, req.body),
-        delete: (req, res) => Persistence.remove(res)(req.params)
+        listAll: (req, res) => Persistence.listAll(res),
+        listOne: (req, res) => Persistence.listOne(req.params, res),
+        delete: (req, res) => Persistence.delete(req.params)
     }
 }
