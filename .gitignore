@@ -1,0 +1,4 @@
+node_modules/
+data/
+app/databases/mysql.js
+app/config/urls.js

@@ -1,0 +1,40 @@
+{
+  "name": "hydra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "DEBUG=express:* nodemon",
+    "start": "DEBUG=express:* node app.js",
+    "lint": "eslint '**/*.js' ",
+    "lint:fix": "eslint '**/*.js' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/dr_strange/hydra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/dr_strange/hydra/issues"
+  },
+  "homepage": "https://gitlab.com/dr_strange/hydra#README",
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-validator": "^4.3.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.14.3"
+  }
+}

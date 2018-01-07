@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.env.osx": {
+        "PATH": "/Users/yolandasampaio/.platformio/penv/bin:/Users/yolandasampaio/Downloads/google-cloud-sdk/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/yolandasampaio/Documents/go/bin:/usr/local/opt/go/libexec/bin:/Applications/Programação/Visual Studio Code.app/Contents/Resources/app/bin"
+    }
+}

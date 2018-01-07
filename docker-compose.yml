@@ -1,0 +1,30 @@
+version: "3"
+services:
+    database:
+        image: mysql
+        container_name: "mysql"
+        restart: always
+        ports:
+            - "3306:3006"
+        environment:
+            MYSQL_DATABASE: "mysql_seed"
+            MYSQL_USER: "root"
+            MYSQL_PASSWORD: ""
+            MYSQL_ROOT_PASSWORD: ""
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    
+
+    backend:
+        image: node:6.11.3
+        container_name: mysql_seed
+        restart: always
+        volumes:
+            - .:/backend
+            - /node_modules
+        ports:
+            - 3000:3000
+        command: bash -c "cd /backend && node_modules/.bin/nodemon"
+
+
+
+# docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
