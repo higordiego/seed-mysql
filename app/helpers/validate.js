@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+
 module.exports = ({
     requestRequired: (req, required, Errors) => {
         required.map((key, index) => {
@@ -21,7 +21,7 @@ module.exports = ({
         })
         return req.validationErrors()
     },
-    isId: id => (mongoose.Types.ObjectId.isValid(id)),
+    isId: id => isNaN(id),
 
     isEmptyObject: (res, Error) => object =>
         new Promise((resolve, reject) => (object) ? resolve(object) : reject(Error)),

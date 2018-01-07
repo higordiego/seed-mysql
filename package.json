@@ -33,8 +33,9 @@
     "express": "^4.16.2",
     "express-validator": "^4.3.0",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.13.7",
     "morgan": "^1.9.0",
-    "nodemon": "^1.14.3"
+    "mysql2": "^1.5.1",
+    "nodemon": "^1.14.3",
+    "sequelize": "^4.29.0"
   }
 }
