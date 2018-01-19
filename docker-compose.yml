@@ -12,7 +12,21 @@ services:
             MYSQL_PASSWORD: ""
             MYSQL_ROOT_PASSWORD: ""
             MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
     
+    mongodb:
+        image: mongo:latest
+        container_name: "mongodb"
+        restart: always
+        environment:
+        - MONGO_DATA_DIR=/data/db
+        - MONGO_LOG_DIR=/dev/null
+        volumes:
+        - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --smallfiles --logpath=/dev/null
+
 
     backend:
         image: node:6.11.3
@@ -24,7 +38,3 @@ services:
         ports:
             - 3000:3000
         command: bash -c "cd /backend && node_modules/.bin/nodemon"
-
-
-
-# docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword

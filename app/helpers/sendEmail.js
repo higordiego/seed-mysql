@@ -5,7 +5,7 @@ module.exports = (app) => {
             const template = Template
 
             const config = {
-                remetente: ' <no-reply@teste.com>',
+                remetente: ' <no-reply@iboltt.com>',
                 assunto: Description
             }
 
