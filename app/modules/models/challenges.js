@@ -34,7 +34,7 @@ module.exports = (sequelize, DataType) => {
 
     Challenges.associate = (models) => {
         Challenges.belongsTo(models.User, {foreignKey: {allowNull: false}})
-        Challenges.belongsTo(models.SegmentUser, {foreignKey: {allowNull: false}})
+        Challenges.belongsTo(models.Segment, {foreignKey: {allowNull: false}})
     }
 
     return Challenges

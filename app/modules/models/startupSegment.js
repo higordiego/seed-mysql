@@ -1,6 +1,7 @@
 const moment = require('moment')
 module.exports = (sequelize, DataType) => {
-    const SegmentEnterprise = sequelize.define('SegmentEnterprise', {
+    const StartupSegment = sequelize.define('StartupSegment', {
+        
     }, {
         hooks: {
             beforeValidate: (model, options) => {
@@ -11,11 +12,10 @@ module.exports = (sequelize, DataType) => {
         }
     })
 
-    SegmentEnterprise.associate = (models) => {
-        SegmentEnterprise.belongsTo(models.Startup)
-        SegmentEnterprise.belongsTo(models.Segment, {foreignKey: {allowNull: false}})
-        SegmentEnterprise.belongsTo(models.Enterprise)
+    StartupSegment.associate = (models) => {
+        StartupSegment.belongsTo(models.Startup, {foreignKey: {allowNull: false}})
+        StartupSegment.belongsTo(models.Segment, {foreignKey: {allowNull: false}})
     }
 
-    return SegmentEnterprise
+    return StartupSegment
 }

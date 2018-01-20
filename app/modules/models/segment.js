@@ -34,8 +34,7 @@ module.exports = (sequelize, DataType) => {
     })
     
     Segment.associate = (models) => {
-        Segment.hasMany(models.SegmentUser, {onDelete: 'CASCADE', hooks: true})
-        Segment.hasMany(models.SegmentEnterprise, {onDelete: 'CASCADE', hooks: true})
+        Segment.hasMany(models.Challenges, {onDelete: 'CASCADE', hooks: true})
     }
 
     return Segment

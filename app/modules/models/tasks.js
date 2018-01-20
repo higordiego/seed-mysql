@@ -43,7 +43,7 @@ module.exports = (sequelize, DataType) => {
 
     Task.associate = (models) => {
         Task.belongsTo(models.Startup, {foreignKey: {allowNull: false}})
-        Task.belongsTo(models.Enterprise, {foreignKey: {allowNull: false}})
+        Task.belongsTo(models.Challenges, {foreignKey: {allowNull: false}})
     }
 
     return Task

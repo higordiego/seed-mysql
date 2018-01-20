@@ -1,23 +1,19 @@
 const moment = require('moment')
 module.exports = (sequelize, DataType) => {
     const Startup = sequelize.define('Startup', {
-        name: {
+        title: {
             type: DataType.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true
             }
         },
-        description: {
+        problematic: {
             type: DataType.TEXT,
             allowNull: false,
             validate: {
                 notEmpty: true
             }
-        },
-        valueation: {
-            type: DataType.DECIMAL(),
-            default: 0.0
         },
         investiment: {
             type: DataType.DECIMAL(),
@@ -25,9 +21,6 @@ module.exports = (sequelize, DataType) => {
             validate: {
                 notEmpty: true
             }
-        },
-        avatar: {
-            type: DataType.STRING
         }
     }, {
         hooks: {
@@ -40,10 +33,9 @@ module.exports = (sequelize, DataType) => {
     })
 
     Startup.associate = (models) => {
-        Startup.hasMany(models.SegmentEnterprise, {onDelete: 'CASCADE', hooks: true})
         Startup.belongsTo(models.User, {foreignKey: {allowNull: false}})
-        Startup.belongsTo(models.SegmentEnterprise)
         Startup.hasMany(models.Task, {onDelete: 'CASCADE', hooks: true})
+        Startup.hasMany(models.StartupSegment, {onDelete: 'CASCADE', hooks: true})
     }
 
     return Startup

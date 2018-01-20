@@ -9,12 +9,12 @@ module.exports = app => {
         create: (req, res) => {
             const body = {}
             console.log(body)
-            Validate.validateBody(req.body, 'name', 'description', 'valuation', 'investiment', 'user_id')(body)
+            Validate.validateBody(req.body, 'title', 'description', 'investiment', 'user_id', 'problematic')(body)
             Persistence.create(res)(body)
         },
         update: (req, res) => {
             const body = {}
-            Validate.validateBody(req.body, 'name', 'description', 'valuation', 'investiment', 'user_id')(body)
+            Validate.validateBody(req.body, 'title', 'description', 'investiment', 'user_id', 'problematic')(body)
             Persistence.update(req.params)(body)
         },
         listAll: (req, res) => {
