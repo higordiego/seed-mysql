@@ -23,7 +23,7 @@ module.exports = (sequelize, DataType) => {
                 notEmpty: true
             }
         },
-        evaluate: {
+        aprove: {
             type: DataType.BOOLEAN,
             allowNull: false,
             defaultValue: false,
@@ -42,8 +42,7 @@ module.exports = (sequelize, DataType) => {
     })
 
     Task.associate = (models) => {
-        Task.belongsTo(models.Startup, {foreignKey: {allowNull: false}})
-        Task.belongsTo(models.Challenges, {foreignKey: {allowNull: false}})
+        Task.belongsTo(models.TimeStartup, {foreignKey: {allowNull: false}})
     }
 
     return Task

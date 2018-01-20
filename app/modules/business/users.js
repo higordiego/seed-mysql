@@ -14,7 +14,12 @@ module.exports = app => {
     return {
         create: (object) => new Promise((resolve, reject) => {
             try {
+                object.phone = Regex.phone(object.phone)
+
+                object.phone = `+55${object.phone}`
+                
                 const phone = Helper.tratmentPhone(object.phone, Regex)
+
                 object.ddd = phone.ddd
                 object.ddi = phone.ddi
                 object.number = phone.number
@@ -29,6 +34,7 @@ module.exports = app => {
         }),
         update: (object) => new Promise((resolve, reject) => {
             try {
+                object.phone = `+55${object.phone}`
                 const validatePhone = isPhone(object)
                 console.log(validatePhone)
                 if (validatePhone !== null) {

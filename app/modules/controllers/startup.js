@@ -1,6 +1,6 @@
 module.exports = app => {
     const Startups = app.datasource.models.Startup
-    const SegmentEnterprise = app.datasource.models.SegmentEnterprise
+    const StartupSegment = app.datasource.models.StartupSegment
     const Segment = app.datasource.models.Segment
     const User = app.datasource.models.User
     const Persistence = require('../../helpers/persistence')(Startups)
@@ -23,15 +23,11 @@ module.exports = app => {
                 include: [
                     {
                         model: User
-                    },
-                    {
-                        model: SegmentEnterprise,
+                    }, {
+                        model: StartupSegment,
                         include: [
                             {
                                 model: Segment
-                            },
-                            {
-                                model: Startups
                             }
                         ]
                     }

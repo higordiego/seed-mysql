@@ -1,6 +1,6 @@
 const moment = require('moment')
 module.exports = (sequelize, DataType) => {
-    const ChallengesStartup = sequelize.define('ChallengesStartup', {
+    const TimeStartup = sequelize.define('TimeStartup', {
         
     }, {
         hooks: {
@@ -12,10 +12,11 @@ module.exports = (sequelize, DataType) => {
         }
     })
 
-    ChallengesStartup.associate = (models) => {
-        ChallengesStartup.belongsTo(models.Startup, {foreignKey: {allowNull: false}})
-        ChallengesStartup.belongsTo(models.Challenges, {foreignKey: {allowNull: false}})
+    TimeStartup.associate = (models) => {
+        TimeStartup.belongsTo(models.Startup, {foreignKey: {allowNull: false}})
+        TimeStartup.belongsTo(models.Time, {foreignKey: {allowNull: false}})
+        TimeStartup.hasMany(models.Task, {onDelete: 'CASCADE', hooks: true})
     }
 
-    return ChallengesStartup
+    return TimeStartup
 }

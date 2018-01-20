@@ -95,8 +95,8 @@ module.exports = (sequelize, DataType) => {
     })
 
     Users.associate = (models) => {
+        Users.hasMany(models.Time, {onDelete: 'CASCADE', hooks: true})
         Users.hasMany(models.Startup, {onDelete: 'CASCADE', hooks: true})
-        Users.hasMany(models.Challenges, {onDelete: 'CASCADE', hooks: true})
     }
 
     return Users

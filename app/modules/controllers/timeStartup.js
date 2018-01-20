@@ -1,20 +1,18 @@
 module.exports = app => {
-    const Tasks = app.datasource.models.Task
-    const Time = app.datasource.models.Time
     const TimeStartup = app.datasource.models.TimeStartup
+    const Time = app.datasource.models.Time
     const People = app.datasource.models.People
-    const Startup = app.datasource.models.Startup
-    const Persistence = require('../../helpers/persistence')(Tasks)
+    const Persistence = require('../../helpers/persistence')(TimeStartup)
     const Validate = require('../../helpers/validate')
     return {
         create: (req, res) => {
             const body = {}
-            Validate.validateBody(req.body, 'name', 'description', 'time_startup_id', 'status')(body)
+            Validate.validateBody(req.body, 'time_id', 'startup_id')(body)
             Persistence.create(res)(body)
         },
         update: (req, res) => {
             const body = {}
-            Validate.validateBody(req.body, 'name', 'description', 'time_startup_id', 'status', 'aprove')(body)
+            Validate.validateBody(req.body, 'time_id', 'startup_id')(body)
             Persistence.update(req.params)(body)
         },
         listAll: (req, res) => {
@@ -22,18 +20,10 @@ module.exports = app => {
                 where: {},
                 include: [
                     {
-                        model: TimeStartup,
+                        model: Time,
                         include: [
                             {
-                                model: Time,
-                                include: [
-                                    {
-                                        model: People
-                                    }
-                                ]
-                            },
-                            {
-                                model: Startup
+                                model: People
                             }
                         ]
                     }

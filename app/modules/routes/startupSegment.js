@@ -1,7 +1,7 @@
 module.exports = app => {
-    const url = `${app.url}/times`
-    const Controller = require('../controllers/times')(app)
-    const Validate = require('../validates/times')(app)
+    const url = `${app.url}/startupsegment`
+    const Controller = require('../controllers/startupSegment')(app)
+    const Validate = require('../validates/startupSegment')(app)
 
     app.route(url)
         .get(Controller.listAll)

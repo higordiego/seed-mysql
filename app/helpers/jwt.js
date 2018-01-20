@@ -18,7 +18,7 @@ module.exports = (app) => {
                 .then(Validate.validateToken(Errors.tokenUser, jwt, key, Validate.isToken))
                 .then(Validate.searchQuery(User, query))
                 .then(Validate.isLogged(req, res, next, Errors.tokenUser))
-                .catch(err => console.log(err))
+                .catch(err => res.status(400).json(err))
         }
     }
 }

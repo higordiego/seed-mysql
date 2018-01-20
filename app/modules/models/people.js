@@ -1,6 +1,6 @@
 const moment = require('moment')
 module.exports = (sequelize, DataType) => {
-    const Challenges = sequelize.define('Challenges', {
+    const People = sequelize.define('People', {
         name: {
             type: DataType.STRING,
             allowNull: false,
@@ -15,9 +15,18 @@ module.exports = (sequelize, DataType) => {
                 notEmpty: true
             }
         },
-        investiment: {
-            type: DataType.DECIMAL(),
+        status: {
+            type: DataType.BOOLEAN,
             allowNull: false,
+            defaultValue: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        aprove: {
+            type: DataType.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
             validate: {
                 notEmpty: true
             }
@@ -32,10 +41,9 @@ module.exports = (sequelize, DataType) => {
         }
     })
 
-    Challenges.associate = (models) => {
-        Challenges.belongsTo(models.User, {foreignKey: {allowNull: false}})
-        Challenges.belongsTo(models.Segment, {foreignKey: {allowNull: false}})
+    People.associate = (models) => {
+        People.belongsTo(models.Time, {foreignKey: {allowNull: false}})
     }
 
-    return Challenges
+    return People
 }

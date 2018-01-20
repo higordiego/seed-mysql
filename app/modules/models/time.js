@@ -7,27 +7,6 @@ module.exports = (sequelize, DataType) => {
             validate: {
                 notEmpty: true
             }
-        },
-        avatar: {
-            type: DataType.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        description: {
-            type: DataType.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        experiences: {
-            type: DataType.TEXT,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
         }
     }, {
         hooks: {
@@ -40,7 +19,9 @@ module.exports = (sequelize, DataType) => {
     })
 
     Time.associate = (models) => {
-        Time.belongsTo(models.Startup, {foreignKey: {allowNull: false}})
+        Time.belongsTo(models.User, {foreignKey: {allowNull: false}})
+        Time.hasMany(models.People, {onDelete: 'CASCADE', hooks: true})
+        Time.hasMany(models.TimeStartup, {onDelete: 'CASCADE', hooks: true})
     }
 
     return Time

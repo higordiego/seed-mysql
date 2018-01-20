@@ -34,8 +34,8 @@ module.exports = (sequelize, DataType) => {
 
     Startup.associate = (models) => {
         Startup.belongsTo(models.User, {foreignKey: {allowNull: false}})
-        Startup.hasMany(models.Task, {onDelete: 'CASCADE', hooks: true})
         Startup.hasMany(models.StartupSegment, {onDelete: 'CASCADE', hooks: true})
+        Startup.hasMany(models.TimeStartup, {onDelete: 'CASCADE', hooks: true})
     }
 
     return Startup
