@@ -23,10 +23,12 @@ module.exports = ({
     },
     requestOptional: (req, required, Errors) => {
         required.map((key, index) => {
-            req.assert(required[index], Errors[key]).notEmpty()
+            req.assert(required[index], Errors[key]).optional()
         })
         return req.validationErrors()
     },
+
+    isId: (id) => isNaN(id),
 
     validateBody: (object, ...body) => returnObject => body.map(key =>  returnObject[key] = object[key]),
 
@@ -39,21 +41,22 @@ module.exports = ({
         }
     },
 
-    isToken: (token, Error) => new Promise((resolve, reject) => (token) ? resolve(token) : reject(Error)),
+    isToken: (token, Error) => new Promise((resolve, reject) => token ? resolve(token) : reject(Error)),
 
     validateToken: (Error, jwt, key) => (token) =>
         new Promise((resolve, reject) => {
             try {
                 const decoded = jwt.decode(token, key)
-                decoded ? resolve() : reject(Error)
+                decoded ? resolve(decoded) : reject(Error)
             } catch (err) {
                 reject(Error)
             }
         }),
 
     isLogged: (req, res, next, Error) => (object) => {
+        
         if (object) {
-            req.user = object
+            req.user = object.dataValues
             next()
         } else {
             res.status(401).json([Error])

@@ -30,21 +30,24 @@ module.exports = app => {
         update: (object) => new Promise((resolve, reject) => {
             try {
                 const validatePhone = isPhone(object)
-                if (typeof validatePhone === 'object') {
+                console.log(validatePhone)
+                if (validatePhone !== null) {
                     object.ddi = validatePhone.ddi
                     object.ddd = validatePhone.ddd
                     object.number = validatePhone.number
                 }
                 const validatePassword = isPassword(object)
-                if (typeof validatePassword === 'string') {
+                if (validatePassword !== null) {
                     object.password = validatePassword
                 }
                 const validatePicture = isPicture(object)
-                if (typeof validatePicture === 'string') {
+                if (validatePicture !== null) {
                     object.avatar = validatePicture
                 }
+                console.log(object)
                 resolve(object)
             } catch (err) {
+                console.log('erro', err)
                 reject(errorSistem.tratmentUpdateUser)
             }
         })

@@ -1,7 +1,5 @@
 const crypto = require('./crypto')
 
-const condition = require('sequelize').Op
-
 const authenticate = (User, Validate, Business, Errors) =>
     (req, res, next) => {
         const exclude = [
@@ -18,7 +16,7 @@ const authenticate = (User, Validate, Business, Errors) =>
                 exclude
             },
             where: {
-                [condition.and]: [{
+                $and: [{
                     email: req.body.email
                 }, {
                     password: crypto.md5(req.body.password)
@@ -26,10 +24,12 @@ const authenticate = (User, Validate, Business, Errors) =>
             }
         }
 
+        console.log(req.body)
+
         Validate.searchQuery(User, query)
             .then(Validate.isEmptyObject(res, Errors.notAuthorization))
             .then(Business.authenticate(res))
-            .catch(err => res.status(500).json(err))
+            .catch(err => res.status(400).json(err))
     }
 
 module.exports = {

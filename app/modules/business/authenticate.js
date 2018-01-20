@@ -10,7 +10,7 @@ module.exports = app => {
 
     return {
         authenticate: (res) => (object) => {
-            const template = require('../../templates/first-html')
+            const template = require('../../../templates/first-html')
             try {
                 const payload = { id: object.id, name: object.name, master: object.master }
                 const tokenGenerator = Generator.token(payload)

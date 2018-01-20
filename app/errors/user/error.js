@@ -14,5 +14,9 @@ module.exports = {
     phone: {
         title: 'Telefone',
         message: 'Telefone é requerido!'
+    },
+    idNotValid: {
+        title: 'Id',
+        message: 'Id inválido!'
     }
 }

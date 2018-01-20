@@ -1,7 +1,7 @@
 module.exports = app => {
-    const url = `${app.url}/users`
-    const Controller = require('../controllers/users')(app)
-    const Validate = require('../validates/users')(app)
+    const url = `${app.url}/segments`
+    const Controller = require('../controllers/segments')(app)
+    const Validate = require('../validates/segments')(app)
 
     app.route(url)
         .get(app.jwt, Controller.listAll)
