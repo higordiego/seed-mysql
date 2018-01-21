@@ -17,6 +17,9 @@ module.exports = app => {
             Persistence.listOneAllWithJoin({}, res)
         },
         listOne: (req, res) => Persistence.listOne(req.params, res),
+        listOneAllStartups: (req,res) => {
+            Persistence.listOneAllWithJoin(req.body, res)
+        },
         delete: (req, res) => Persistence.delete(req.params)
     }
 }
