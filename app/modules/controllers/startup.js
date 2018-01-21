@@ -32,7 +32,27 @@ module.exports = app => {
                         ]
                     }
                 ]
-                
+            }
+            Persistence.listAllQuery(query, res)
+        },
+        listOneAllStartups: (req, res) => {
+            const query = {
+                where: {
+                    user_id: req.body.user_id
+                },
+                include: [
+                    {
+                        model: User,
+                        required: true
+                    }, {
+                        model: StartupSegment,
+                        include: [
+                            {
+                                model: Segment
+                            }
+                        ]
+                    }
+                ]
             }
             Persistence.listAllQuery(query, res)
         },
