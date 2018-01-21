@@ -4,7 +4,7 @@ module.exports = app => {
     const Validate = require('../validates/segments')(app)
 
     app.route(url)
-        .get(app.jwt, Controller.listAll)
+        .get(Controller.listAll)
         .post(Validate.create, Controller.create)
 
     app.route(`${url}/:id`)
