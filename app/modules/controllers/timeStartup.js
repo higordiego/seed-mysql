@@ -2,6 +2,7 @@ module.exports = app => {
     const TimeStartup = app.datasource.models.TimeStartup
     const Time = app.datasource.models.Time
     const People = app.datasource.models.People
+    const Startup = app.datasource.models.Startup
     const Persistence = require('../../helpers/persistence')(TimeStartup)
     const Validate = require('../../helpers/validate')
     return {
@@ -32,6 +33,26 @@ module.exports = app => {
             Persistence.listAllQuery(query, res)
         },
         listOne: (req, res) => Persistence.listOne(req.params, res),
+        listOneAllStartups: (req, res) => {
+            const query = {
+                where: {},
+                include: [
+                    {
+                        model: Time,
+                        include: [
+                            {
+                                model: People
+                            }
+                        ]
+                    },
+                    {
+                        model: Startup,
+                        where: {user_id: req.body.user_id}
+                    }
+                ]
+            }
+            Persistence.listAllQuery(query, res)
+        },
         delete: (req, res) => Persistence.delete(req.params)
     }
 }

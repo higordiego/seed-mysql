@@ -3,6 +3,10 @@ module.exports = app => {
     const StartupSegment = app.datasource.models.StartupSegment
     const Segment = app.datasource.models.Segment
     const User = app.datasource.models.User
+    const Time = app.datasource.models.Time
+    const Task = app.datasource.models.Task
+    const TimeStartup = app.datasource.models.TimeStartup
+    
     const Persistence = require('../../helpers/persistence')(Startups)
     const Validate = require('../../helpers/validate')
     return {
@@ -42,6 +46,17 @@ module.exports = app => {
                 },
                 include: [
                     {
+                        model: TimeStartup,
+                        include: [
+                            {
+                                model: Time
+                            },
+                            {
+                                model: Task
+                            }
+                        ]
+                    },
+                    {
                         model: User,
                         required: true
                     }, {
@@ -60,3 +75,4 @@ module.exports = app => {
         delete: (req, res) => Persistence.delete(req.params)
     }
 }
+
