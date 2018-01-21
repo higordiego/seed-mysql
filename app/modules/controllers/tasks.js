@@ -42,6 +42,64 @@ module.exports = app => {
             Persistence.listAllQuery(query, res)
         },
         listOne: (req, res) => Persistence.listOne(req.params, res),
+        listConditionComplete: (req, res) => {
+            const query = {
+                where: {
+                    $and: [
+                        {status: true},
+                        {aprove: false}
+                    ]
+                },
+                include: [
+                    {
+                        model: TimeStartup,
+                        include: [
+                            {
+                                model: Time,
+                                include: [
+                                    {
+                                        model: People
+                                    }
+                                ]
+                            },
+                            {
+                                model: Startup
+                            }
+                        ]
+                    }
+                ]
+            }
+            Persistence.listAllQuery(query, res)
+        },
+        listConditionAprove: (req, res) => {
+            const query = {
+                where: {
+                    $and: [
+                        {status: true},
+                        {aprove: true}
+                    ]
+                },
+                include: [
+                    {
+                        model: TimeStartup,
+                        include: [
+                            {
+                                model: Time,
+                                include: [
+                                    {
+                                        model: People
+                                    }
+                                ]
+                            },
+                            {
+                                model: Startup
+                            }
+                        ]
+                    }
+                ]
+            }
+            Persistence.listAllQuery(query, res)
+        },
         delete: (req, res) => Persistence.delete(req.params)
     }
 }
