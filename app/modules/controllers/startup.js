@@ -39,6 +39,39 @@ module.exports = app => {
             }
             Persistence.listAllQuery(query, res)
         },
+        listAllStartupsId: (req, res) => {
+            const query = {
+                where: {
+                    id: req.params.id
+                },
+                include: [
+                    {
+                        model: TimeStartup,
+                        where: {startup_id: req.params.id},
+                        include: [
+                            {
+                                model: Time
+                            },
+                            {
+                                model: Task
+                            }
+                        ]
+                    },
+                    {
+                        model: User,
+                        required: true
+                    }, {
+                        model: StartupSegment,
+                        include: [
+                            {
+                                model: Segment
+                            }
+                        ]
+                    }
+                ]
+            }
+            Persistence.listAllOneQuery(query, res)
+        },
         listOneAllStartups: (req, res) => {
             const query = {
                 where: {

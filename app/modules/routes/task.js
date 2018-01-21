@@ -5,12 +5,15 @@ module.exports = app => {
 
     app.route(url)
         .get(Controller.listAll)
-        .post(Validate.create, Controller.create)
+        .post(app.jwt, Validate.create, Controller.create)
 
     app.route(`${url}/:id`)
         .get(app.jwt, Validate.isId, Controller.listOne)
         .put(app.jwt, Validate.isId, Validate.update, Controller.update)
         .delete(app.jwt, Validate.isId, Controller.delete)
+
+    app.route(`${url}/all/startup/:startup_id`)
+        .get(app.jwt, Controller.listTaksStartup)
 
     app.route(`${url}/complete`)
         .get(app.jwt, Controller.listConditionComplete)

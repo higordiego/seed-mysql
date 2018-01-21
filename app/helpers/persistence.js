@@ -15,6 +15,10 @@ module.exports = Model => ({
     listAllQuery: (query, res) => Model.findAll(query)
         .then(result => callbackObject.returnListSuccess(result, res))
         .catch(error => callbackObject.returnError(error, res)),
+        
+    listAllOneQuery: (query, res) => Model.findOne(query)
+        .then(result => callbackObject.returnListSuccess(result, res))
+        .catch(error => callbackObject.returnError(error, res)),
 
     listOne: (query, res) => Model.findOne({where: query})
         .then(result => callbackObject.returnListSuccess(result, res))

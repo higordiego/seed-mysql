@@ -14,4 +14,7 @@ module.exports = app => {
 
     app.route(`${url}/all`)
         .post(Controller.listOneAllStartups)
+
+    app.route(`${url}/all/:id`)
+        .get(app.jwt, Validate.isId, Controller.listAllStartupsId)
 }
