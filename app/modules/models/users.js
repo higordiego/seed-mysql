@@ -96,10 +96,6 @@ module.exports = (sequelize, DataType) => {
 
     Users.associate = (models) => {
         Users.belongsTo(models.TypesUser, {foreignKey: {allowNull: false}})
-        Users.hasMany(models.SegmentUser, {onDelete: 'CASCADE', hooks: true})
-        Users.hasMany(models.Startup, {onDelete: 'CASCADE', hooks: true})
-        Users.hasMany(models.Challenges, {onDelete: 'CASCADE', hooks: true})
-        Users.hasMany(models.Enterprise, {onDelete: 'CASCADE', hooks: true})
     }
 
     return Users
