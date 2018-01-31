@@ -17,5 +17,10 @@ module.exports = ({
                 underscored: true
             }
         }
+    },
+    uwsConfig: {
+        noServer: true,
+        clientTracking: false,
+        perMessageDeflate: false
     }
 })

@@ -6,7 +6,13 @@ const path = require('path')
 const morgan = require('morgan')
 const socket = require('socket.io')
 const validator = require('express-validator')
+const uws = require('uws')
+
 const validateFormat = require('./app/helpers/validate')
+const config = require('./app/config/urls').mysql
+const uwsConfigEngine = require('./app/config/urls').uwsConfig
+const url = require('./app/config/urls').api
+const datasource = require('./app/databases/mysql')
 
 const app = express()
 
@@ -23,16 +29,9 @@ const port = process.env.PORT || 3000
 
 const server = http.createServer(app)
 const io = socket.listen(server)
+const uwsEngine = uws.Server(uwsConfigEngine)
 
-io.engine.ws = new (require('uws').Server)({
-    noServer: true,
-    clientTracking: false,
-    perMessageDeflate: false
-})
-
-const config = require('./app/config/urls').mysql
-const url = require('./app/config/urls').api
-const datasource = require('./app/databases/mysql')
+io.engine.ws = uwsEngine
 
 app.config = config
 app.datasource = datasource(app)
