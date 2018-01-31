@@ -1,0 +1,7 @@
+organization=higordiego-github
+projectKey=seed-mysql
+serverUrl=https://sonarcloud.io
+serverVersion=7.1.0.35720
+dashboardUrl=https://sonarcloud.io/dashboard/index/seed-mysql
+ceTaskId=AWFJjnVng2wape3yPE7L
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWFJjnVng2wape3yPE7L
