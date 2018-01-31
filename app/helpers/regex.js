@@ -1,6 +1,5 @@
 
 const phoneClean = phone => phone.replace(/[^0-9]+/g, '')
-const clean = object => object.replace(/[\.-]/g, '')
 const ddi = phone => phone.substring(0, 2)
 const ddd = phone => phone.substring(2, 4)
 const phone = phone => phone.substring(4, 14)
@@ -14,8 +13,7 @@ const cep = cep => {
 module.exports = {
     phoneClean,
     ddi,
-    ddd: ddd,
-    clean,
+    ddd,
     phone,
     cep
 }

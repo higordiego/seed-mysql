@@ -12,6 +12,6 @@ module.exports = app => {
             const error = Validate.requestOptional(req, required, Errors)
             error ? res.status(400).json(error) : next()
         },
-        isId: (req, res, next) => Validate.isId(req.params.id) ? res.status(400).json(Errors.idNotValid) : next()
+        isId: (req, res, next) => Validate.isNumber(req.params.id, res, next, Errors.idNotValid)
     }
 }

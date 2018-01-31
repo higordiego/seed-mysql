@@ -30,11 +30,9 @@ io.engine.ws = new (require('uws').Server)({
     perMessageDeflate: false
 })
 
-
 const config = require('./app/config/urls').mysql
 const url = require('./app/config/urls').api
 const datasource = require('./app/databases/mysql')
-
 
 app.config = config
 app.datasource = datasource(app)

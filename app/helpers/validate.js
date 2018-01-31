@@ -12,7 +12,7 @@ module.exports = ({
     isUpload: (file, avatar, next) => (helpRemoveOld) => {
         if (file) helpRemoveOld.remove(avatar)
         next()
-    }, 
+    },
     isNumber: (number, res, next, Error) => !isNaN(number) ? next() : res.status(400).json(Error),
 
     requestRequired: (req, required, Errors) => {
@@ -28,9 +28,10 @@ module.exports = ({
         return req.validationErrors()
     },
 
-    isId: (id) => isNaN(id),
-
-    validateBody: (object, ...body) => returnObject => body.map(key =>  returnObject[key] = object[key]),
+    validateBody: (object, ...body) => returnObject => body.map(key => {
+        returnObject[key] = object[key]
+        return returnObject
+    }),
 
     tratmentPhone: (phone, Regex) => {
         const object = Regex.phoneClean(phone)
