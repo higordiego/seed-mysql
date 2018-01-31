@@ -54,7 +54,6 @@ module.exports = ({
         }),
 
     isLogged: (req, res, next, Error) => (object) => {
-        
         if (object) {
             req.user = object.dataValues
             next()
